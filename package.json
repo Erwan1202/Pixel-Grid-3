@@ -1,0 +1,20 @@
+{
+  "name": "pixel-grid-3",
+  "version": "1.0.0",
+  "description": "Non c'est pas une blague (plutot un combat a ce niveau)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erwan1202/Pixel-Grid-3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Erwan1202/Pixel-Grid-3/issues"
+  },
+  "homepage": "https://github.com/Erwan1202/Pixel-Grid-3#readme"
+}
