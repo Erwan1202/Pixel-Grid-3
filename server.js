@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const cors = require('cors');
+const cors = require('cors'); 
 
 const { connectDB } = require('./src/models/db.connect');
 const authRoutes = require('./src/routes/auth.routes');
@@ -13,7 +13,7 @@ const port = process.env.PORT || 3001;
 const server = http.createServer(app);
 
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL, 
     'http://localhost:5173'
 ];
 const VERCEL_PREVIEW_REGEX = /^https:\/\/pixel-grid-3-.*\.vercel\.app$/;
@@ -35,8 +35,10 @@ const io = new Server(server, {
     cors: corsOptions,
 });
 
-app.options('*', cors(corsOptions));
+app.options('/*', cors(corsOptions)); 
+
 app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use((req, res, next) => {
