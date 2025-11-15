@@ -2,12 +2,13 @@ const cors = require('cors');
 
 const whitelist = [
     process.env.FRONTEND_URL, 
-    process.env.PREVIEW_URL, 
 ];
 
 const corsOptions = {
     origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
+        const vercelPreviewRegex = /^https:\/\/pixel-grid-3-.*\.vercel\.app$/;
+
+        if (whitelist.indexOf(origin) !== -1 || vercelPreviewRegex.test(origin) || !origin) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
