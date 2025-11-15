@@ -1,9 +1,18 @@
 const cors = require('cors');
 
-const allowedOrigin = process.env.FRONTEND_URL.replace(/\/$/, ""); 
+const whitelist = [
+    process.env.FRONTEND_URL, 
+    process.env.PREVIEW_URL, 
+];
 
 const corsOptions = {
-    origin: allowedOrigin,
+    origin: (origin, callback) => {
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
 };
