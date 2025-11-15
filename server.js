@@ -12,14 +12,28 @@ const app = express();
 const port = process.env.PORT || 3001;
 const server = http.createServer(app);
 
+const allowedOrigins = [
+    process.env.FRONTEND_URL, 
+    'http://localhost:5173'
+];
+const VERCEL_PREVIEW_REGEX = /^https:\/\/pixel-grid-3-.*\.vercel\.app$/;
+
+const corsOriginLogic = (origin, callback) => {
+    if (allowedOrigins.indexOf(origin) !== -1 || VERCEL_PREVIEW_REGEX.test(origin) || !origin) {
+        callback(null, true);
+    } else {
+        console.error('CORS blocked origin:', origin);
+        callback(new Error('Not allowed by CORS'));
+    }
+};
+
 const io = new Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL,
+        origin: corsOriginLogic,
         methods: ['GET', 'POST'],
     },
 });
 
-app.use(corsMiddleware);
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -28,8 +42,7 @@ app.use((req, res, next) => {
 });
 
 connectDB();
-
-
+        
 app.use('/api/auth', authRoutes);
 app.use('/api/grid', gridRoutes);
 
