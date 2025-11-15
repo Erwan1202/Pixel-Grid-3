@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>PixelGrid V2</h1>
+        <h1>PixelGrid</h1>
         {isAuthenticated && (
           <button onClick={handleLogout} className="logout-button">
             Déconnexion
