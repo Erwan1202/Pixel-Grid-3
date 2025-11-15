@@ -14,6 +14,7 @@ const execute = async (query, params = []) => {
         client.release();
         return result;
     } catch (error) {
+        console.error('PostgreSQL query error:', error);
         throw error;
     }
 };
