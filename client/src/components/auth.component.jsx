@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import authService from '../services/auth.services';
+import authService from '../services/auth.services.js';
 import './auth.css';
 
 const Auth = ({ onLoginSuccess }) => {
@@ -31,28 +31,38 @@ const Auth = ({ onLoginSuccess }) => {
         <h2>{isLogin ? 'Connexion' : 'Inscription'}</h2>
         
         {!isLogin && (
+          <div className="input-group">
+            <input
+              type="text"
+              placeholder="Nom d'utilisateur"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+            <small>Doit contenir au moins 3 caractères.</small>
+          </div>
+        )}
+        
+        <div className="input-group">
           <input
-            type="text"
-            placeholder="Nom d'utilisateur"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             required
           />
-        )}
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
+        </div>
+        
+        <div className="input-group">
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {!isLogin && <small>Doit contenir au moins 8 caractères.</small>}
+        </div>
         
         {error && <p className="error-message">{error}</p>}
         
