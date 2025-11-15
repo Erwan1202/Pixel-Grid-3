@@ -1,6 +1,6 @@
 const request = require('supertest');
 const server = require('../server');
-const { execute } = require('../src/models/db.postgres');
+const { execute, pool } = require('../src/models/db.postgres');
 const app = require('../server');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
@@ -37,6 +37,7 @@ afterAll(async () => {
     await execute('DELETE FROM users WHERE email IN ($1, $2)', [userEmail, adminEmail]);
     await execute('DELETE FROM pixel WHERE x_coord IN (50, 51, 55)');
     await PixelLog.deleteMany({ x_coord: { $in: [50, 51, 55] } });
+    await pool.end();
 });
 
 describe('A. AUTHENTICATION (User Flow)', () => {
@@ -152,13 +153,15 @@ describe('D. ADVANCED SECURITY AND ERROR HANDLING', () => {
 
 describe('E. BDD INTERACTION (SQL + NoSQL Consistency)', () => {
     it('POST /api/grid/pixel - should ensure pixel is logged in MongoDB AND updated in PostgreSQL', async () => {
-        await request(app)
+        const res = await request(server)
             .post('/api/grid/pixel')
             .set('Authorization', `Bearer ${userToken}`)
             .send(uniquePixel);
 
+        expect(res.statusCode).toBe(200);
+
         const pgResult = await execute('SELECT color FROM pixel WHERE x_coord = $1 AND y_coord = $2', [uniquePixel.x, uniquePixel.y]);
-        expect(pgResult.rows[0].color).toBe(uniquePixel.color);
+        expect(pgResult.rows[0].color).toBe(uniquePixel.color); 
 
         const mongoLog = await PixelLog.findOne({ x_coord: uniquePixel.x, y_coord: uniquePixel.y, color: uniquePixel.color });
         expect(mongoLog).not.toBeNull();

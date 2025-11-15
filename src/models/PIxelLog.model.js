@@ -14,7 +14,7 @@ const PixelLogSchema = new mongoose.Schema({
         required: true
     },
     userId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         required: false,
         index: true
     },

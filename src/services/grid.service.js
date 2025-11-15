@@ -21,7 +21,7 @@ const updatePixel = async (x, y, color, userId, io) => {
         x_coord: x,
         y_coord: y,
         color: color,
-        userId: userId,
+        userId: userId.toString(),
     });
     await logEntry.save();
 
@@ -37,14 +37,16 @@ const deletePixelByCoords = async (x, y) => {
     `;
     const result = await execute(deleteQuery, [x, y]);
     
-    const logEntry = new PixelLog({
-        x_coord: x,
-        y_coord: y,
-        color: 'DELETED',
-        userId: 'ADMIN_ACTION', 
-        action: 'DELETED_BY_ADMIN',
-    });
-    await logEntry.save();
+    if (result.rowCount > 0) {
+        const logEntry = new PixelLog({
+            x_coord: x,
+            y_coord: y,
+            color: 'DELETED',
+            userId: 'ADMIN_ACTION', 
+            action: 'DELETED_BY_ADMIN',
+        });
+        await logEntry.save();
+    }
 
     return result.rowCount > 0;
 };

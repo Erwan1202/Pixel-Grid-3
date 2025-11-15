@@ -21,4 +21,5 @@ const execute = async (query, params = []) => {
 
 module.exports = {
     execute,
+    pool,
 };
