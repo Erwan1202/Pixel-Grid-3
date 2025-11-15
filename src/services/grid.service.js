@@ -1,5 +1,5 @@
 const { execute } = require('../models/db.postgres');
-const PixelLog = require('../models/PixelLog.model');
+const PixelLog = require('../models/PIxelLog.model');
 
 const getGridState = async () => {
     const result = await execute('SELECT x_coord, y_coord, color FROM pixel');

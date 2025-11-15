@@ -1,6 +1,7 @@
 const request = require('supertest');
-const app = require('../server');
+const server = require('../server');
 const { execute } = require('../src/models/db.postgres');
+const app = require('../server');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken'); 
 const PixelLog = require('../src/models/PIxelLog.model'); 
