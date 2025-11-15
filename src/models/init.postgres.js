@@ -25,11 +25,16 @@ const createTables = async () => {
         );
     `;
 
-    await execute(userTableQuery);
-    console.log('PostgreSQL table users created or exists.');
+    try {
+        await execute(userTableQuery);
+        console.log('PostgreSQL table users created or exists.');
 
-    await execute(pixelTableQuery);
-    console.log('PostgreSQL table pixel created or exists.');
+        await execute(pixelTableQuery);
+        console.log('PostgreSQL table pixel created or exists.');
+    } catch (error) {
+        console.error('Error creating tables:', error);
+        throw error;
+    }
 };
 
 module.exports = {
