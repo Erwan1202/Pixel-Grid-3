@@ -1,16 +1,138 @@
-# React + Vite
+# Pixel Grid - Frontend 🎨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application React pour l'interface utilisateur collaborative de dessinage en temps réel.
 
-Currently, two official plugins are available:
+## 📋 Table des matières
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Démarrage rapide](#-démarrage-rapide)
+- [Scripts disponibles](#-scripts-disponibles)
+- [Structure du projet](#-structure-du-projet)
+- [Composants](#-composants)
+- [Services](#-services)
+- [Configuration](#-configuration)
 
-## React Compiler
+## 🚀 Démarrage rapide
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Installation
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+### Développement
+```bash
+npm run dev
+```
+L'application sera accessible à **http://localhost:5173**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Production
+Application déployée sur Vercel : https://pixel-grid-3-4qzmj6czd-erwan1202s-projects.vercel.app/
+
+### Build
+```bash
+npm run build
+```
+
+### Preview
+```bash
+npm run preview
+```
+
+## 📜 Scripts disponibles
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Démarrer le serveur de développement avec HMR |
+| `npm run build` | Build pour la production |
+| `npm run preview` | Prévisualiser le build de production |
+| `npm run lint` | Exécuter ESLint |
+
+## 📁 Structure du projet
+
+```
+client/
+├── src/
+│   ├── components/
+│   │   ├── auth.component.jsx        # Authentification
+│   │   ├── colorPicker.jsx           # Sélecteur de couleur
+│   │   ├── grid.component.jsx        # Grille de pixels
+│   │   └── *.css                     # Styles
+│   ├── services/
+│   │   ├── api.js                    # Requêtes HTTP
+│   │   ├── auth.services.js          # Service d'auth
+│   │   └── socket.services.js        # WebSocket
+│   ├── assets/                       # Images, fonts...
+│   ├── App.jsx                       # Composant principal
+│   ├── main.jsx                      # Point d'entrée
+│   └── index.css                     # Styles globaux
+├── public/                           # Fichiers statiques
+├── index.html                        # HTML principal
+├── vite.config.js                    # Configuration Vite
+├── eslint.config.js                  # Configuration ESLint
+└── package.json
+```
+
+## 🧩 Composants
+
+### AuthComponent
+Gère l'authentification utilisateur
+- Inscription
+- Connexion
+- Gestion des tokens JWT
+
+### ColorPicker
+Sélecteur de couleur pour choisir la couleur des pixels
+
+### GridComponent
+Affichage et interaction avec la grille de pixels
+- Affichage en temps réel
+- Placement de pixels
+- Mise à jour via WebSocket
+
+## 🔧 Services
+
+### api.js
+Service HTTP pour communiquer avec l'API backend
+
+### auth.services.js
+Gestion des tokens JWT et de l'authentification
+
+### socket.services.js
+Connexion WebSocket avec Socket.io pour les mises à jour en temps réel
+
+## ⚙️ Configuration
+
+### Variables d'environnement (`.env`)
+
+```env
+VITE_API_URL=http://localhost:3001
+VITE_WS_URL=http://localhost:3001
+```
+
+### Vite Configuration
+
+Voir `vite.config.js` pour la configuration Vite et React plugin
+
+### ESLint
+
+Configuration disponible dans `eslint.config.js`
+
+## 🎨 Styles
+
+- **App.css** - Styles principaux
+- **index.css** - Styles globaux
+- **grid.css** - Styles de la grille
+- **auth.css** - Styles d'authentification
+- **ColorPicker.css** - Styles du sélecteur de couleur
+
+## 🔗 Intégration avec le Backend
+
+L'application se connecte au backend à `http://localhost:3001` pour :
+- Authentification (`/api/auth`)
+- Données de la grille (`/api/grid`)
+- WebSocket en temps réel
+
+## 📚 Documentation supplémentaire
+
+- [README Global](../README.md)
+- [README Backend](../README-BACKEND.md)
+- [API Documentation](http://localhost:3001/api/docs) - Swagger UI

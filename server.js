@@ -2,11 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const cors = require('cors'); 
+const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
 
 const { connectDB } = require('./src/models/db.connect');
 const authRoutes = require('./src/routes/auth.routes');
 const gridRoutes = require('./src/routes/grid.routes');
+const swaggerSpec = require('./src/swagger');
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -46,6 +48,7 @@ app.use((req, res, next) => {
 
 connectDB();
 
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { customCss: '.swagger-ui .topbar { display: none }' }));
 app.use('/api/auth', authRoutes);
 app.use('/api/grid', gridRoutes);
 
