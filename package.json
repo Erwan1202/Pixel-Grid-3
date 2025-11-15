@@ -1,0 +1,43 @@
+{
+  "name": "pixel-grid-3",
+  "version": "1.0.0",
+  "description": "Non c'est pas une blague (plutot un combat a ce niveau)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erwan1202/Pixel-Grid-3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Erwan1202/Pixel-Grid-3/issues"
+  },
+  "homepage": "https://github.com/Erwan1202/Pixel-Grid-3#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "joi": "^18.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.4",
+    "pg": "^8.16.3",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.11",
+    "supertest": "^7.1.4"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 30000
+  }
+}
