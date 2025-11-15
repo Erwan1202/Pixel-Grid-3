@@ -1,0 +1,21 @@
+.pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size, 100), 8px);
+  grid-template-rows: repeat(var(--grid-size, 100), 8px);
+  width: 800px; 
+  height: 800px; 
+  border: 1px solid #555;
+  background-color: #ffffff; 
+  image-rendering: pixelated; 
+}
+
+.pixel {
+  width: 8px;
+  height: 8px;
+  box-shadow: inset 0 0 0 1px #f0f0f0; 
+}
+
+.pixel:hover {
+  outline: 1px solid blue;
+  cursor: pointer;
+}
