@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'test') {
     });
 
     const pixelRateLimiter = rateLimit({
-        windowMs: 60 * 1000,
+        windowMs: 5 * 1000,
         max: 3,
         standardHeaders: true,
         legacyHeaders: false,

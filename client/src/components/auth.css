@@ -11,8 +11,38 @@
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0; /* Géré par .input-group maintenant */
+  align-items: center;
   width: 300px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box; /* Assure que le padding n'augmente pas la largeur */
+}
+
+.input-group small {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: left;
+  margin-top: 3px;
+  margin-left: 5px;
+}
+
+.auth-form {
+  /* ... (styles précédents) ... */
+  gap: 0; /* Géré par .input-group maintenant */
+  align-items: center;
+}
+
+.auth-form .input-group {
+  margin-bottom: 0.8rem;
 }
 
 .auth-form input {

@@ -1,0 +1,27 @@
+.color-picker-container {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.color-swatch {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #555;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.selected {
+  border-color: #61dafb;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #61dafb;
+}
